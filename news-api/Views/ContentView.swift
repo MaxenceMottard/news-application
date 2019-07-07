@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  news-api
+//  github-search
 //
 //  Created by Maxence Mottard on 07/07/2019.
 //  Copyright © 2019 Maxence Mottard. All rights reserved.
@@ -9,8 +9,21 @@
 import SwiftUI
 
 struct ContentView : View {
+    
+    @State var networkManager = NetworkManager()
+    
     var body: some View {
-        Text("Hello World")
+        
+        NavigationView {
+            
+            List(networkManager.articles.identified(by: \.url)) {
+                
+                ArticleView(article: $0)
+                
+            }
+            
+        }
+        
     }
 }
 
